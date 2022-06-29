@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>File Share</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.5.2/css/bootstrap.min.css">
+</head>
+
+<body>
+   
+    <%- include('./partials/nav.ejs') %>
+    <div style="grid-template-columns: auto 1fr; max-width: 600px; margin: 0 auto; margin-top: 10px;">
+        <% if(locals.filelink !=null){ %>
+            <div style="margin-bottom: 1rem; margin: auto;">
+                <h3>Your file is uploded</h3>
+                <a href="<%= locals.filelink %> ">
+                    <%= locals.filelink %>
+                </a>
+            </div>
+
+            <% } %>
+                <% if(locals.error){ %>
+                    <div style=" color: red; margin-bottom: 1rem; margin: auto;">
+                        <h3>
+                            <%= locals.message %>
+                        </h3>
+                    </div>
+
+                    <% } %>
+                        <form action="/upload" method="post" enctype="multipart/form-data"
+                            style="display: grid; gap: .5rem; grid-template-columns: auto 1fr; max-width: 500px; margin: 0 auto;">
+
+                            <label for="file">File: </label>
+                            <input type="file" name="file" id="file" required />
+                            <label for="password">Password: </label>
+                            <input type="password" name="password" id="password" />
+                            <button type="submit" style="grid-column: span 2;">Share</button>
+                        </form>
+    </div>
+</body>
+
+</html>
